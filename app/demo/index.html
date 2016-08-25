@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js">
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="angScr.js"></script>
+</head>
+
+<body>
+
+<div ng-app="dragDrop" ng-controller="DragDropCtrl">    
+ 
+ <div id='eachProd' class='item' ng-repeat="x in item">   
+   <div class="innerContent">
+      {{x.Name}}  
+    </div>
+ </div>
+
+     
+ <div id='basket' class='bin' droppable drop='handleDrop()'>
+    {{bin}}
+ </div>
+
+
+<style type="text/css">
+ #eachProd {
+     float: left;
+      width: 150px;
+      height: 50px;
+      background: #ABC;
+      color: #123;
+      position: relative;
+      margin-bottom: 1px;
+      margin-left: 20px;
+    }
+  #productContainer {
+      float: left;
+      width: 80%;
+      height: 80%;
+      background: #ABC;
+      color: #123;
+      position: relative;
+      margin-bottom: 1px;
+      margin-left: 20px;
+  }
+ #innerContent {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 10px;
+      bottom: 10px;
+      background: #96F;
+    }
+
+ #basket {
+     float: right;
+      width: 100px;
+      height: 100px;
+      background: #ab6;
+      color: #FFF;
+      position: relative;
+      margin-bottom: 1px;
+      margin-right: 300px;
+    }
+</style>
+
+</body>
+
+</html>
