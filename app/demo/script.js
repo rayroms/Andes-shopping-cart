@@ -1,7 +1,7 @@
 
-var app = angular.module("dragDrop", ["mySharedElements"]);
+var app = angular.module("dragDrop", ["mySharedElements"]);  // linking 'mySharedElements' - i.e. directives/event listeners for drag and drop 
 
-app.controller('kpr', function($scope,Basket,Product,Order) { 
+app.controller('kpr', function($scope,Basket,Product,Order) { //input factory functions to model transaction
     
     //--------------- cart class variables------------------------
 
@@ -17,12 +17,13 @@ app.controller('kpr', function($scope,Basket,Product,Order) {
       $scope.setIdDraggedProd(); //set itemDropIDCategory, itemDropID itemDropQty
     }
 
-//      {{'Category:'+itemDropIDCategory + 'ProdID:' + itemDropID  + 'Qty':quantity}}
-
 
     //---------------------------------------
 
 
+
+
+    //----------------Get input(prodId,categoryId,quantity) from dragging action--------------------
     //item quantity input label 
     $scope.bin = '-';
     
@@ -44,12 +45,22 @@ app.controller('kpr', function($scope,Basket,Product,Order) {
           $scope.itemDropQty = $scope.productList[$scope.itemDropCategory][$scope.itemDropID-1].Quantity;
     };
 
+    //------------------------------------------------
+
+
+
+    //----------------Navigation--------------------
+
     //change product category/page
     $scope.gotoPage =  function(categoryName) {
         $scope.currentItemCategory = $scope.itemCategoryList[categoryName];
     };
+    //------------------------------------
 
 
+
+
+    //----------------Set up Product list --------------------
     //items to display
     $scope.productList = {  
                   'Choo':[
@@ -84,7 +95,7 @@ app.controller('kpr', function($scope,Basket,Product,Order) {
                       };  
                       
 
-
+    //------------------------------------
    
 
     //returns an array based on a range 
@@ -99,6 +110,8 @@ app.controller('kpr', function($scope,Basket,Product,Order) {
 
 });
 
+
+//----------------Factory functions modelling the transaction in OOP ----------------------
 
 app.factory('Product', function() {
   
