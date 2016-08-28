@@ -96,6 +96,7 @@ angular.module('mySharedElements',[])
                     //alert(e.dataTransfer.getData('Text'));
                     
                     $scope.bin = e.dataTransfer.getData('Text');
+                    $scope.onDropAddToBasket();
                     
                     // call the drop passed drop function
                     //$scope.$apply('drop()');

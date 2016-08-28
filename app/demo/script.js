@@ -5,17 +5,60 @@ app.controller('kpr', function($scope,Basket,Product,Order) { //input factory fu
     
     //--------------- cart class variables------------------------
 
-    $scope.appBasketInst = '';
+
 
     $scope.creatAppBasketInst =  function(){
-      var anAppBasket = new Basket();   //create an instance of a basket for use in the app.. called only once on page open 
-      $scope.appBasketInst = anAppBasket;
+      if($scope.appBasketInst == undefined){
+        var appBasket = new Basket();   //create an instance of a basket for use in the app.. called only once on page open 
+        $scope.appBasketInst = appBasket;
+      }
     };
 
+    $scope.updateUserInput = function(instr) {
+      if (instr =='newSelection') {
+        $scope.setIdDraggedProd(); //set itemDropIDCategory, itemDropID itemDropQty
+      }
+      else if(instr == 'deleteSelection'){
+
+      }
+
+    }
+
+    $scope.onDropAddToBasket = function(){
+      //update inputs
+      $scope.updateUserInput('newSelection');
+
+      //create product object for dragged item based on input
+      var productInst = new Product();
+      var orderInst = new Order();
+      
+      productInst.productId = $scope.itemDropID;
+      productInst.name = $scope.productList[$scope.itemDropCategory][$scope.itemDropID-1].Name;
+      productInst.price = $scope.productList[$scope.itemDropCategory][$scope.itemDropID-1].Price;
+      productInst.quantity = $scope.itemDropQty;
+      productInst.discount = $scope.productList[$scope.itemDropCategory][$scope.itemDropID-1].Discount;
+
+      //create order
+      orderInst.productId = productInst.productId;
+      orderInst.quantity = productInst.quantity;
+      orderInst.price = productInst.price;
+      orderInst.discount = productInst.discount;
+
+      $scope.appBasketInst.addToBasket(orderInst);
+
+      //alert($scope.appBasketInst.orderList.length + ' item in basket valued at =N='+ $scope.appBasketInst.computeOrder());
+      //alert( orderInst.productId +'/'+ orderInst.quantity+'/'+orderInst.price+ '/'+orderInst.discount);
+
+
+
+    
+    };
 
     $scope.startProcess = function() {  //checkout action
-      $scope.setIdDraggedProd(); //set itemDropIDCategory, itemDropID itemDropQty
-    }
+      
+      $scope.label = $scope.appBasketInst.orderList.length + ' items in Cart valued at =N=' + $scope.appBasketInst.computeOrder();
+
+    };
 
 
     //---------------------------------------
@@ -49,12 +92,13 @@ app.controller('kpr', function($scope,Basket,Product,Order) { //input factory fu
 
 
 
-    //----------------Navigation--------------------
+    //----------------Navigation and Display--------------------
 
     //change product category/page
     $scope.gotoPage =  function(categoryName) {
         $scope.currentItemCategory = $scope.itemCategoryList[categoryName];
     };
+    $scope.label = '';
     //------------------------------------
 
 
@@ -64,34 +108,34 @@ app.controller('kpr', function($scope,Basket,Product,Order) { //input factory fu
     //items to display
     $scope.productList = {  
                   'Choo':[
-                        {'Id': 1, 'Name':'Rice', 'Price': 2000.00, 'Quantity':1},
-                        {'Id': 2, 'Name':'Yam', 'Price': 1000, 'Quantity':1},  
-                        {'Id': 3, 'Name':'Beans', 'Price': 2500, 'Quantity':1},  
-                        {'Id': 4, 'Name':'Potato', 'Price': 500, 'Quantity':1},
-                        {'Id': 5, 'Name':'Banana', 'Price': 200, 'Quantity':1},
-                        {'Id': 6, 'Name':'Pineapple', 'Price': 300, 'Quantity':1},  
-                        {'Id': 7, 'Name':'Pawpaw', 'Price': 250, 'Quantity':1},  
-                        {'Id': 8, 'Name':'Coconut', 'Price': 100, 'Quantity':1}  ],
+                        {'Id': 1, 'Name':'Rice', 'Price': 2000.00, 'Quantity':1,'Discount':0},
+                        {'Id': 2, 'Name':'Yam', 'Price': 1000, 'Quantity':1,'Discount':0},  
+                        {'Id': 3, 'Name':'Beans', 'Price': 2500, 'Quantity':1,'Discount':0},  
+                        {'Id': 4, 'Name':'Potato', 'Price': 500, 'Quantity':1,'Discount':0},
+                        {'Id': 5, 'Name':'Banana', 'Price': 200, 'Quantity':1,'Discount':0},
+                        {'Id': 6, 'Name':'Pineapple', 'Price': 300, 'Quantity':1,'Discount':0},  
+                        {'Id': 7, 'Name':'Pawpaw', 'Price': 250, 'Quantity':1,'Discount':0},  
+                        {'Id': 8, 'Name':'Coconut', 'Price': 100, 'Quantity':1,'Discount':0}  ],
                     
                   'Louboutin':[
-                        {'Id': 1, 'Name':'Blue Leather', 'Price': 2000.00, 'Quantity':1},
-                        {'Id': 2, 'Name':'Timberland', 'Price': 100000, 'Quantity':1},  
-                        {'Id': 3, 'Name':'Louboutin', 'Price': 500000, 'Quantity':1},  
-                        {'Id': 4, 'Name':'Jimy Cho', 'Price': 500, 'Quantity':1},
-                        {'Id': 5, 'Name':'Air Jordan', 'Price': 200, 'Quantity':1},
-                        {'Id': 6, 'Name':'Caterpilla', 'Price': 300, 'Quantity':1},  
-                        {'Id': 7, 'Name':'Clarks', 'Price': 250, 'Quantity':1},  
-                        {'Id': 8, 'Name':'Sketchers', 'Price': 100, 'Quantity':1}  ],
+                        {'Id': 1, 'Name':'Blue Leather', 'Price': 2000.00, 'Quantity':1,'Discount':0},
+                        {'Id': 2, 'Name':'Timberland', 'Price': 100000, 'Quantity':1,'Discount':0},  
+                        {'Id': 3, 'Name':'Louboutin', 'Price': 500000, 'Quantity':1,'Discount':0},  
+                        {'Id': 4, 'Name':'Jimy Cho', 'Price': 500, 'Quantity':1,'Discount':0},
+                        {'Id': 5, 'Name':'Air Jordan', 'Price': 200, 'Quantity':1,'Discount':0},
+                        {'Id': 6, 'Name':'Caterpilla', 'Price': 300, 'Quantity':1,'Discount':0},  
+                        {'Id': 7, 'Name':'Clarks', 'Price': 250, 'Quantity':1,'Discount':0},  
+                        {'Id': 8, 'Name':'Sketchers', 'Price': 100, 'Quantity':1,'Discount':0}  ],
 
                   'Nike':[
-                        {'Id': 1, 'Name':'Jordan Super Fly 5', 'Price': 60000, 'Quantity':1},
-                        {'Id': 2, 'Name':'Air Jordan Trainer 1', 'Price': 60200, 'Quantity':1},  
-                        {'Id': 3, 'Name':'Westbrook O Low', 'Price': 60500, 'Quantity':1},  
-                        {'Id': 4, 'Name':'Jordan 5 AM', 'Price': 40000, 'Quantity':1},
-                        {'Id': 5, 'Name':'Air Jordan 5', 'Price': 76000, 'Quantity':1},
-                        {'Id': 6, 'Name':'Air Jordan XXXI', 'Price': 75000, 'Quantity':1},  
-                        {'Id': 7, 'Name':'Jordan Ultra Fly ', 'Price': 43000, 'Quantity':1},  
-                        {'Id': 8, 'Name':'Jordan Reveal', 'Price': 41500, 'Quantity':1}  ],
+                        {'Id': 1, 'Name':'Jordan Super Fly 5', 'Price': 60000, 'Quantity':1,'Discount':0},
+                        {'Id': 2, 'Name':'Air Jordan Trainer 1', 'Price': 60200, 'Quantity':1,'Discount':0},  
+                        {'Id': 3, 'Name':'Westbrook O Low', 'Price': 60500, 'Quantity':1,'Discount':0},  
+                        {'Id': 4, 'Name':'Jordan 5 AM', 'Price': 40000, 'Quantity':1,'Discount':0},
+                        {'Id': 5, 'Name':'Air Jordan 5', 'Price': 76000, 'Quantity':1,'Discount':0},
+                        {'Id': 6, 'Name':'Air Jordan XXXI', 'Price': 75000, 'Quantity':1,'Discount':0},  
+                        {'Id': 7, 'Name':'Jordan Ultra Fly', 'Price': 43000, 'Quantity':1,'Discount':0},  
+                        {'Id': 8, 'Name':'Jordan Reveal', 'Price': 41500, 'Quantity':1,'Discount':0}  ],
                       };  
                       
 
@@ -116,8 +160,8 @@ app.controller('kpr', function($scope,Basket,Product,Order) { //input factory fu
 app.factory('Product', function() {
   
   var productInst = function() {
+      this.productId = '';
       this.name = '';
-      this.picture = '';
       this.price = 0;
       this.discount = 0;
       this.quantity = 0;  //set by view
@@ -137,22 +181,6 @@ app.factory('Order', function() {
 
   }
   return orderInst;
-
-});
-
-app.service('AddToBasket', function(productInst,basketInst) {
-  
-  this.addItemToBasket = function() {
-    //create order for product
-    var orderInst = new Order();
-    orderInst.productId = productInst.productId;
-    orderInst.quantity = productInst.quantity;
-    orderInst.price = productInst.price;
-
-    //add order to basket. Basket now has product that was dragged 
-    basketInst.addToBasket(orderInst);
-
-  }
 
 });
 
@@ -194,7 +222,7 @@ app.factory('Basket', function() {
     }
 
 }
-
+  alert("App basket instantiated");
   return basketInst;
 
 });

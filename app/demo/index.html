@@ -17,7 +17,7 @@
 </head>
 
 
-<body ng-app="dragDrop" ng-controller="kpr" ng-init= "currentItemCategory = 'Nike' ">
+<body ng-app="dragDrop" ng-controller="kpr" ng-init= "currentItemCategory = 'Nike' " ng-model='creatAppBasketInst()'>
 
 <div class="container">
 
@@ -26,7 +26,7 @@
       <img src= "imgs/cart.png" class="img-rounded"  style= width:10%; height: 10%; float:right; alt="Image"  > <br>
       <button ng-click="startProcess()">Checkout</button>
 
-      <p> {{'Category:'+itemDropCategory + '  ProdID:' + itemDropID  + '  Qty:'+itemDropQty}} </p>
+      <p> {{label}} </p>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
             <img src="imgs/{{currentItemCategory}}/{{x.Id}}.jpg" id ='{{x.Id}}' class="img-responsive" style="width:100%" alt="Image" draggable>        
             
             <div class="form-group">
-              <p> {{x.Name + ' Qty:' + x.Quantity}} <br> {{"=N=" + x.Price }} <input class="col-xs-3" type="number" min="1" max="20" ng-model='x.Quantity' > </p>
+              <p> {{x.Name}} <br> {{"=N=" + x.Price }} <input class="col-xs-3" type="number" min="1" max="20" ng-model='x.Quantity' > </p>
             </div>
         </div>
     </div>
