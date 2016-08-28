@@ -7,66 +7,95 @@
   </script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
   <script src="/node_modules/angular/angular.js"></script>
-  <script src="angScr.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="script.js"></script>
+  <script src="modules/Directives.js"></script>
+  <script src="assets/ProductList.json"></script>
+
+<style src="assets/style.css"></style>
+  
 </head>
 
-<body>
 
-<div ng-app="dragDrop" ng-controller="DragDropCtrl">    
- 
- <div id='eachProd' class='item' ng-repeat="x in item">   
-   <div class="innerContent">
-      {{x.Name}}  
+<body ng-app="dragDrop" ng-controller="kpr">
+
+<div class="container">
+
+    <div class="jumbotron" droppable>
+      <div id=checkout>
+      <img src= "imgs/cart.png" class="img-rounded"  style= width:10%; height: 10%; float:right; alt="Image"  > <br>
+            <button ng-click="doSquare()">Checkout</button>
+      </div>
+      {{bin}}
     </div>
- </div>
-
-     
- <div id='basket' class='bin' droppable drop='handleDrop()'>
-    {{bin}}
- </div>
 
 
-<style type="text/css">
- #eachProd {
-     float: left;
-      width: 150px;
-      height: 50px;
-      background: #ABC;
-      color: #123;
-      position: relative;
-      margin-bottom: 1px;
-      margin-left: 20px;
-    }
-  #productContainer {
-      float: left;
-      width: 80%;
-      height: 80%;
-      background: #ABC;
-      color: #123;
-      position: relative;
-      margin-bottom: 1px;
-      margin-left: 20px;
-  }
- #innerContent {
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      top: 10px;
-      bottom: 10px;
-      background: #96F;
-    }
 
- #basket {
-     float: right;
-      width: 100px;
-      height: 100px;
-      background: #ab6;
-      color: #FFF;
-      position: relative;
-      margin-bottom: 1px;
-      margin-right: 300px;
-    }
-</style>
+<!--    <button type="button" class="btn btn-primary" on-click="setIdDraggedProd()">Checkout</button>
+
+  <nav class="navbar navbar-inverse" >
+    <div class="container-fluid">
+      <div class="navbar-header" >
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Andes</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+           <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Groceries</a></li>
+            <li><a href="#">Clothes</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">Books</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  -->
+
+      <!-- rows to hold category buttons-Nav bar-->
+    <div id='navBar'>
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Andes</a>
+          </div>
+          <ul class="nav navbar-nav">
+
+            <li><a href="#">Nike</a></li>
+            <li><a href="#">Louboutin</a></li>
+          </ul>
+        </div>
+      </nav>  
+    </div>
+
+
+    
+  <div class="container-fluid bg-3 text-center">
+    <div class="row">
+    
+        <div class="col-sm-3" ng-repeat="x in item['2']">
+            <img src="imgs/Air/{{x.Id}}.jpg" id ='{{x.Id+"-2"}}' class="img-responsive" style="width:100%" alt="Image" draggable>        
+            
+            <div class="form-group">
+              <p> {{x.Name + ' Qty:' + x.Quantity}} <br> {{"=N=" + x.Price }} <input class="col-xs-3" type="number" min="1" max="20" ng-model='x.Quantity' > </p>
+            </div>
+        </div>
+    </div>
+
+  </div><br><br>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Andes Inc</p>
+</footer>
 
 </body>
 
