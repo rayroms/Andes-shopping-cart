@@ -7,7 +7,7 @@ angular.module('mySharedElements',[])
         return function($scope, element) {
             // this gives us the native JS object
             var el = element[0];
-            $scope.bin = 'aBasket';
+
             el.draggable = true;
 
             el.addEventListener(
@@ -26,7 +26,7 @@ angular.module('mySharedElements',[])
                 function(e) {
 
                     this.classList.remove('drag');
-                    $scope.bin = 'Hola';
+
                     return false;
                 },
                 false
@@ -93,13 +93,12 @@ angular.module('mySharedElements',[])
 
                     //set Id of dragged item
 
-                    alert(e.dataTransfer.getData('Text'));
+                    //alert(e.dataTransfer.getData('Text'));
                     
                     $scope.bin = e.dataTransfer.getData('Text');
                     
                     // call the drop passed drop function
-                    $scope.$apply('drop()');
-
+                    //$scope.$apply('drop()');
 
                     return false;
                 },

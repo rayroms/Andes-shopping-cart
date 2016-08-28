@@ -17,48 +17,19 @@
 </head>
 
 
-<body ng-app="dragDrop" ng-controller="kpr">
+<body ng-app="dragDrop" ng-controller="kpr" ng-init= "currentItemCategory = 'Nike' ">
 
 <div class="container">
 
     <div class="jumbotron" droppable>
       <div id=checkout>
       <img src= "imgs/cart.png" class="img-rounded"  style= width:10%; height: 10%; float:right; alt="Image"  > <br>
-            <button ng-click="doSquare()">Checkout</button>
-      </div>
-      {{bin}}
-    </div>
+      <button ng-click="startProcess()">Checkout</button>
 
-
-
-<!--    <button type="button" class="btn btn-primary" on-click="setIdDraggedProd()">Checkout</button>
-
-  <nav class="navbar navbar-inverse" >
-    <div class="container-fluid">
-      <div class="navbar-header" >
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Andes</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-           <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Groceries</a></li>
-            <li><a href="#">Clothes</a></li>
-            <li><a href="#">Movies</a></li>
-            <li><a href="#">Books</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
+      <p> {{'Category:'+itemDropCategory + '  ProdID:' + itemDropID  + '  Qty:'+itemDropQty}} </p>
       </div>
     </div>
-  </nav>
-  -->
+
 
       <!-- rows to hold category buttons-Nav bar-->
     <div id='navBar'>
@@ -69,8 +40,8 @@
           </div>
           <ul class="nav navbar-nav">
 
-            <li><a href="#">Nike</a></li>
-            <li><a href="#">Louboutin</a></li>
+            <li><a href="#" ng-click='gotoPage("Nike")'>Nike</a></li>
+            <li><a href="#" ng-click='gotoPage("Louboutin")' >Louboutin</a></li>
           </ul>
         </div>
       </nav>  
@@ -81,8 +52,8 @@
   <div class="container-fluid bg-3 text-center">
     <div class="row">
     
-        <div class="col-sm-3" ng-repeat="x in item['2']">
-            <img src="imgs/Air/{{x.Id}}.jpg" id ='{{x.Id+"-2"}}' class="img-responsive" style="width:100%" alt="Image" draggable>        
+        <div class="col-sm-3" ng-repeat="x in productList[currentItemCategory]">
+            <img src="imgs/{{currentItemCategory}}/{{x.Id}}.jpg" id ='{{x.Id}}' class="img-responsive" style="width:100%" alt="Image" draggable>        
             
             <div class="form-group">
               <p> {{x.Name + ' Qty:' + x.Quantity}} <br> {{"=N=" + x.Price }} <input class="col-xs-3" type="number" min="1" max="20" ng-model='x.Quantity' > </p>
