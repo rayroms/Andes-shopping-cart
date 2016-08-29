@@ -94,7 +94,7 @@ angular.module('mySharedElements',[])
                     //set Id of dragged item
 
                     //alert(e.dataTransfer.getData('Text'));
-                    
+
                     $scope.bin = e.dataTransfer.getData('Text');
                     $scope.onDropAddToBasket();
                     
