@@ -1,0 +1,47 @@
+
+    /* Remove the navbar's default margin-bottom and rounded borders */
+  
+    #page-header {
+      /*float: left;
+      height: 25%;
+      color: #FFF;
+      position: relative;
+      margin-bottom: 1px;
+      margin-top: 0px;
+
+      width: 50%;
+      background: #00F;*/
+
+   }
+    .navbar {
+      padding-top: 0;
+      margin-bottom: 100;
+      border-radius: 0;
+      position: relative; 
+    }
+    .jumbotron{
+       height: 300px;
+       padding-bottom: 0px;
+       margin-top: 0px;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    #checkout {
+      float: right;
+      height: 25%;
+      color: #FFF;
+      position: absolute;
+
+    }
+
+
+    #imgWrap {
+      width: 100px;
+      height: 50px;
+    }
+  
+  

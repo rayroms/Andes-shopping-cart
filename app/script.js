@@ -128,11 +128,11 @@ app.controller('kpr', function($scope,Basket,Product,Order) { //input factory fu
                         {'Id': 1, 'Name':'Gregossic Flat', 'Price': 440000, 'Quantity':1,'Discount':0},
                         {'Id': 2, 'Name':'Dandelion Tassel', 'Price': 400000, 'Quantity':1,'Discount':0},  
                         {'Id': 3, 'Name':'Lou Spikes', 'Price': 400000, 'Quantity':1,'Discount':0},  
-                        {'Id': 4, 'Name':'Tres Nono', 'Price': 450000, 'Quantity':1,'Discount':0},
-                        {'Id': 5, 'Name':'Antonio Booty', 'Price': 600000, 'Quantity':1,'Discount':0},
-                        {'Id': 6, 'Name':'Cousin Charles', 'Price': 480000, 'Quantity':1,'Discount':0},  
-                        {'Id': 7, 'Name':'Greggo Orlato', 'Price': 400000, 'Quantity':1,'Discount':0},  
-                        {'Id': 8, 'Name':'Dandelion Strass', 'Price': 1520000, 'Quantity':1,'Discount':0}  ],
+                        {'Id': 4, 'Name':'Tres Nono', 'Price': 500, 'Quantity':1,'Discount':0},
+                        {'Id': 5, 'Name':'Air Jordan', 'Price': 200, 'Quantity':1,'Discount':0},
+                        {'Id': 6, 'Name':'Caterpilla', 'Price': 300, 'Quantity':1,'Discount':0},  
+                        {'Id': 7, 'Name':'Clarks', 'Price': 250, 'Quantity':1,'Discount':0},  
+                        {'Id': 8, 'Name':'Sketchers', 'Price': 100, 'Quantity':1,'Discount':0}  ],
 
                   'Nike':[
                         {'Id': 1, 'Name':'Jordan Super Fly 5', 'Price': 60000, 'Quantity':1,'Discount':0},
